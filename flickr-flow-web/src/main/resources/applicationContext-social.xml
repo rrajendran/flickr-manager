@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="org.springframework.social.flickr.*" />
+	<context:component-scan base-package="org.springframework.social.connect.web.*" />
+
+	<bean id="connectionFactoryLocator"
+		class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+		<property name="connectionFactories">
+			<list>
+				<bean
+					class="org.springframework.social.flickr.connect.FlickrConnectionFactory">
+					<constructor-arg value="${flickr.consumerKey}" />
+					<constructor-arg value="${flickr.consumerSecret}" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- <jdbc:embedded-database id="dataSource" type="H2" /> -->
+	<!-- <jdbc:initialize-database data-source="dataSource">
+			<jdbc:script location="classpath:/org/springframework/social/connect/jdbc/JdbcUsersConnectionRepository.sql" />
+	</jdbc:initialize-database> -->
+	<bean id="usersConnectionRepository"
+		class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository"
+		p:connectionSignUp-ref="flickrConnectionSignUp">
+		<constructor-arg ref="dataSource" />
+		<constructor-arg ref="connectionFactoryLocator" />
+		<constructor-arg ref="textEncryptor" />
+
+	</bean>
+
+
+	<bean id="connectionRepository" factory-method="createConnectionRepository"
+		factory-bean="usersConnectionRepository" scope="request">
+		<constructor-arg value="#{request.userPrincipal.name}" />
+		<aop:scoped-proxy proxy-target-class="false" />
+	</bean>
+
+	<!-- <bean id="flickrApi" factory-bean="connectionRepository" factory-method="findPrimaryConnection" 
+		scope="session"> <constructor-arg value="org.springframework.social.flickr.api.Flickr"></constructor-arg> 
+		<aop:scoped-proxy proxy-target-class="false" /> </bean> -->
+	<bean class="org.springframework.social.connect.web.ConnectController">
+		<property name="applicationUrl" value="${application.url}" />
+		<property name="interceptors">
+			<list>
+				<bean
+					class="org.springframework.social.flickr.connect.FlickrAfterConnectInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.social.connect.web.ProviderSignInController"
+		p:applicationUrl="${application.url}" p:signInUrl="/signin/flickr"
+		p:signUpUrl="${application.post.login.url}">
+		<constructor-arg index="1" name="connectionFactoryLocator"
+			ref="connectionFactoryLocator" />
+		<constructor-arg index="2" name="usersConnectionRepository"
+			ref="usersConnectionRepository" />
+		<constructor-arg index="3" name="signInAdapter"
+			ref="springSecuritySignInAdapter" />
+	</bean>
+
+	<!-- <bean class="org.springframework.social.connect.web.ProviderSignInController"> 
+		<property name="signUpUrl" value="/register" /> </bean> -->
+
+	<bean class="org.springframework.social.oauth1.OAuth1Template">
+		<!-- String consumerKey, String consumerSecret, String requestTokenUrl, 
+			String authorizeUrl, String accessTokenUrl -->
+		<constructor-arg index="0" name="consumerKey"
+			value="${flickr.consumerKey}" />
+		<constructor-arg index="1" name="consumerSecret"
+			value="${flickr.consumerSecret}" />
+		<constructor-arg index="2" name="requestTokenUrl"
+			value="${flickr.consumerKey}" />
+		<constructor-arg index="3" name="authorizeUrl"
+			value="${flickr.consumerKey}" />
+		<constructor-arg index="4" name="accessTokenUrl"
+			value="${flickr.consumerKey}" />
+	</bean>
+
+	<bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors"
+		factory-method="noOpText" />
+</beans>

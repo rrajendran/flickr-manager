@@ -1,0 +1,9 @@
+*.class
+*.war
+.settings/
+.springBeans
+bin/
+target/
+.DS_Store
+.classpath
+

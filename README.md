@@ -1,2 +1,2 @@
-flickr-manager
-==============
+repository
+==========

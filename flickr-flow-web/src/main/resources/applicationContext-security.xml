@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	<sec:http auto-config='true'>
+		<sec:intercept-url pattern="/addComments/**" access="ROLE_USER"/>
+		<sec:intercept-url pattern="/explore/**" access="ROLE_USER"/>
+		<sec:intercept-url pattern="/template/**" access="ROLE_USER"/>
+		<sec:intercept-url pattern="/exif/**" access="ROLE_USER" />
+		<sec:intercept-url pattern="/view/**" access="ROLE_USER" />
+		<sec:intercept-url pattern="/getPublicPhotos/**" access="ROLE_USER" />
+		<sec:intercept-url pattern="/search/**" access="ROLE_USER" />
+		<sec:intercept-url pattern="/photosets/**" access="ROLE_USER" />
+		<sec:intercept-url pattern="/profile/**" access="ROLE_USER" />
+		<sec:form-login login-page="/login"
+			authentication-success-handler-ref="authenticationSuccessHandler" />
+		<sec:logout logout-success-url="/login"
+			invalidate-session="true" delete-cookies="username, roles, JSESSIONID, token" />
+	</sec:http>
+
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider>
+			<sec:user-service>
+				<sec:user name="48149369@N04" password="welcome1" authorities="ROLE_USER, ROLE_ADMIN" />
+			</sec:user-service>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+	<!-- Authentication success handler -->
+	<bean id="authenticationSuccessHandler" class="com.capella.flickrflow.web.handlers.FlickrAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/" />
+	</bean>
+	
+
+</beans>
