@@ -19,7 +19,8 @@
 		</li>
 		
 		<%-- <li class='last'><a href='<c:url value="/settings" />'><span>Settings</span></a></li> --%>
-	</ul>
+	</ul> 
+	
 	<div id="search">
 		<form:form method="post" action="search" id="frmPopulateBabyNames"
 			commandName="formSearch">
@@ -28,3 +29,13 @@
 		</form:form>
 	</div>
 </div>
+<!-- <div class="menu">
+	<ul>
+		<li><a href='<c:url value="/profile/${principal.principal}" />'><span>Profile</span></a></li>
+		<li><a
+			href='<c:url value="/photosets/sets?nsid=${principal.principal}" />'><span>Sets</span></a></li>
+		<li><a href='<c:url value="/galleries/${principal.principal}" />'><span>Galleries</span></a></li>
+		<li><a href='<c:url value="j_spring_security_logout" />'><span>Logout</span></a></li>
+		<%-- <li><a href='<c:url value="/tags?nsid=${principal.principal}" />'><span>Tags</span></a></li> --%>
+	</ul>
+</div> -->

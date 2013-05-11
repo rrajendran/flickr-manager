@@ -1,59 +1,58 @@
-<%@ page session="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<%@ include file="includes.jsp"%>
-</head>
-<body>
-		<%@ include file="menu.jsp"%>
-	<div id="wrapper">
-		<c:choose>
-			<c:when test="${info != null}">
-				<div id="flickrImg">
-					<img
-						src="<c:out value="http://farm${info.photo.farm}.staticflickr.com/${info.photo.server}/${info.photo.id}_${info.photo.secret}_z.jpg" />" />
-				</div>
-				<div id="exifInfo">
-					<table class="exifTable">
-						<c:forEach items="${exifWrapper.photo.exif}" var="exif" varStatus="status">
-							<c:choose>
-								<c:when test="${exif.label == 'Lens Model' }">
-									<tr>
-										<td><c:out value=" ${exif.label}" /></td>
-										<td><a
-											href="<c:url value='/search?text=${exif.raw._content}'/>">${exif.raw._content}</a>
-										</td>
-									</tr>
-								</c:when>
-								<c:when test="${exif.label == 'Model' }">
-									<tr>
-										<td><c:out value=" ${exif.label}" /></td>
-										<td><a
-											href="<c:url value='/search?camera=${exif.raw._content}'/>">${exif.raw._content}</a>
-										</td>
-									</tr>
-								</c:when>
-								<c:otherwise>
-									<tr>
-										<td><c:out value=" ${exif.label}" /></td>
-										<td><c:out value=" ${exif.raw._content}" /></td>
-									</tr>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-					</table>
-				</div>
-	</div>
-
-	</c:when>
-
-	<c:otherwise>
-      			No Permissions to read
-      		</c:otherwise>
-	</c:choose>
-	</div>
-</body>
-</html>
+<table>
+	<tr>
+		<td>Make</td>
+		<td>${exifWrapper.photo.map['Make'] }</td>
+	</tr>
+	<tr>
+		<td>Model</td>
+		<td>${exifWrapper.photo.map['Model'] }</td>
+	</tr>
+	<tr>
+		<td>Exposure</td>
+		<td>${exifWrapper.photo.map['Exposure'] } secs</td>
+	</tr>
+	<tr>
+		<td>Aperture</td>
+		<td>${exifWrapper.photo.map['Aperture'] }</td>
+	</tr>
+	<tr>
+		<td>Exposure Program</td>
+		<td>${exifWrapper.photo.map['Exposure Program'] }</td>
+	</tr>
+	<tr>
+		<td>ISO Speed</td>
+		<td>${exifWrapper.photo.map['ISO Speed'] }</td>
+	</tr>
+	<tr>
+		<td>Metering Mode</td>
+		<td>${exifWrapper.photo.map['Metering Mode'] }</td>
+	</tr>
+	<tr>
+		<td>Flash</td>
+		<td>${exifWrapper.photo.map['Flash'] }</td>
+	</tr>
+	<tr>
+		<td>Focal Length</td>
+		<td>${exifWrapper.photo.map['Focal Length'] }</td>
+	</tr>
+	<tr>
+		<td>Exposure Mode</td>
+		<td>${exifWrapper.photo.map['Exposure Mode'] }</td>
+	</tr>
+	<tr>
+		<td>White Balance</td>
+		<td>${exifWrapper.photo.map['White Balance'] }</td>
+	</tr>
+	<tr>
+		<td>Lens Info</td>
+		<td>${exifWrapper.photo.map['Lens Info'] }</td>
+	</tr>
+	<tr>
+		<td>Copyright</td>
+		<td>${exifWrapper.photo.map['Copyright'] }</td>
+	</tr>
+	<tr>
+		<td>Date Created</td>
+		<td>${exifWrapper.photo.map['Date Created'] }</td>
+	</tr>
+</table>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.flickr.api.CommentsOperations;
+import org.springframework.social.flickr.api.Flickr;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,20 +27,12 @@ import com.capella.flickr.api.model.PersonModel;
 import com.capella.flickr.api.model.PhotoCommentsModel;
 import com.capella.flickr.api.model.PhotoInfoModel;
 import com.capella.flickr.api.model.PhotosModel;
-import com.capella.flickr.api.operations.photos.ExifOperations;
-import com.capella.flickr.api.operations.photos.PhotosOperations;
-import com.capella.flickr.api.operations.photos.comments.PhotoCommentsOperations;
 import com.capella.flickrflow.web.command.FormSearch;
 
 @Controller
 public class PhotosController extends BaseFlickrController {
 	@Autowired
-	private PhotosOperations photosOperations;
-	@Autowired
-	private ExifOperations exifOperations;
-
-	@Autowired
-	private PhotoCommentsOperations photoCommentsOperations;
+	Flickr flickr;
 	
 /*	@Inject
 	public PhotosController(ConnectionRepository connectionRepository){
@@ -57,10 +50,9 @@ public class PhotosController extends BaseFlickrController {
 		addPageObjects(modelAndView, page);
 		modelAndView.addObject("principal", principal);
 		try {
-			Map<String, Object> parameters = getQueryParams(request);
 			String text = request.getParameter("text");
-			parameters.put("text", text == null ? formSearch.getText() : text);
-			PhotosModel photoSearch = photosOperations.search(parameters);
+			text = text == null ? formSearch.getText() : text;
+			PhotosModel photoSearch = flickr.getPhotosOperations().search(text);
 			modelAndView.addObject("photos", photoSearch);
 		} catch (FlickrException e) {
 			e.printStackTrace();
@@ -79,8 +71,7 @@ public class PhotosController extends BaseFlickrController {
 		modelAndView.addObject("formSearch", formSearch);
 		modelAndView.addObject("principal", principal);
 		try {
-			Map<String, Object> parameters = getQueryParams(request);
-			PhotosModel photoSearch = photosOperations.getRecent(parameters);
+			PhotosModel photoSearch = flickr.getPhotosOperations().getRecent();
 			modelAndView.addObject("photos", photoSearch);
 		} catch (FlickrException e) {
 			e.printStackTrace();
@@ -99,9 +90,8 @@ public class PhotosController extends BaseFlickrController {
 		modelAndView.addObject("formSearch", formSearch);
 		modelAndView.addObject("principal", principal);
 		try {
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			PhotosModel photoSearch = photosOperations
-					.getWithGeoData(parameters);
+			PhotosModel photoSearch = flickr.getPhotosOperations()
+					.getWithGeoData();
 			modelAndView.addObject("photos", photoSearch);
 		} catch (FlickrException e) {
 			e.printStackTrace();
@@ -122,11 +112,10 @@ public class PhotosController extends BaseFlickrController {
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("photo_id", id);
 
-			ExifModel photo = exifOperations.getExif(ExifModel.class,
-					parameters);
+			ExifModel photo =flickr.getPhotosOperations().getExif(id);
 			model.addObject("exifWrapper", photo);
 
-			PhotoInfoModel info = photosOperations.getInfo(parameters);
+			PhotoInfoModel info = flickr.getPhotosOperations().getInfo(id);
 			model.addObject("info", info);
 
 		} catch (FlickrException e) {
@@ -154,6 +143,16 @@ public class PhotosController extends BaseFlickrController {
 		return commentsOperations.deleteComments(commentId);
 	}
 	
+	@RequestMapping(value="/view/addToFavourite/{photoId}",method=RequestMethod.GET)
+	public @ResponseBody boolean addToFavourite(@PathVariable("photoId")String photoId){
+		return flickr.getFavoritesOperations().add(photoId);
+	}
+	
+	@RequestMapping(value="/view/removeFromFavourite/{photoId}",method=RequestMethod.GET)
+	public @ResponseBody boolean removeFromFavourite(@PathVariable("photoId")String photoId){
+		return flickr.getFavoritesOperations().remove(photoId);
+	}
+	
 	@RequestMapping("/view")
 	public ModelAndView viewPhoto(
 			@RequestParam(value = "id", required = true) String id,
@@ -164,17 +163,13 @@ public class PhotosController extends BaseFlickrController {
 		model.addObject("formSearch", formSearch);
 		model.addObject("principal", principal);
 		try {
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("photo_id", id);
-
-			ExifModel photo = exifOperations.getExif(ExifModel.class,
-					parameters);
+			ExifModel photo = flickr.getPhotosOperations().getExif(id);
 			model.addObject("exifWrapper", photo);
 
-			PhotoInfoModel info = photosOperations.getInfo(parameters);
+			PhotoInfoModel info = flickr.getPhotosOperations().getInfo(id);
 			model.addObject("info", info);
 			
-			PhotoCommentsModel comments = photoCommentsOperations.getList(parameters);
+			PhotoCommentsModel comments = flickr.getCommentsOperations().getList(id);
 			model.addObject("comments", comments);
 			
 			String ownerId = info.getPhoto().getOwner().getNsid();

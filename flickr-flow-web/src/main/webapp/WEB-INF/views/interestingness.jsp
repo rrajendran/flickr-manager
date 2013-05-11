@@ -10,42 +10,44 @@
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
+	<section>
 	<div id="wrapper">
 		<div style="float: left; clear: left">
-			${title} <input size="10" type="text" id="datepicker" value="${date}" />
+			<span class="title">${title}</span><input size="10" type="text" id="datepicker" value="${date}" />
 		</div>
-		<div id="pageNav" style="float: left">
+		<div class="menu" id="pageNav" style="float: left">
 			<c:if test="${prevPage != 0}">
-				<input title="Activate lightbox" type="radio" id="prev" name="radio">
+				<input title="Previous" type="radio" id="prev" name="radio">
 				<label for="prev"> <a
 					href="<c:url value="/explore/${date}/${prevPage}/${perPage}"/>">Prev</a>
 				</label>
 			</c:if>
 			<c:if test="${nextPage != null}">
-				<input title="Deactivate lightbox" type="radio" id="next"
-					name="radio" checked="checked">
+				<input title="Next" type="radio" id="next" name="radio"
+					checked="checked">
 				<label for="next"> <a
 					href="<c:url value="/explore/${date}/${nextPage}/${perPage}"/>">Next</a>
 				</label>
 			</c:if>
 		</div>
 		<%@ include file="lightbox.jsp"%>
-
-
-
-		<div id="flickrGallery">
-			<c:forEach items="${photos.photos.photo}" var="photo"
-				varStatus="status">
-				<input type="hidden" id="lightboxUrl-${photo.id}"
-					value="<c:url value="http://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg" />" />
-				<input type="hidden" id="viewUrl-${photo.id}"
-					value="<c:url value="/view?id=${photo.id}" />" />
-				<a title="${photo.title}" class="lightbox" id="${photo.id}"
-					href="/view?id=${photo.id}"> <img title="${photo.title}"
-					src="<c:out value="http://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg" />" />
-				</a>
-			</c:forEach>
-		</div>
 	</div>
+	</section>
+	<section>
+	<div id="flickrGallery">
+		<c:forEach items="${photos.photos.photo}" var="photo"
+			varStatus="status">
+			<input type="hidden" id="lightboxUrl-${photo.id}"
+				value="<c:url value="http://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg" />" />
+			<input type="hidden" id="viewUrl-${photo.id}"
+				value="<c:url value="/view?id=${photo.id}" />" />
+			<a title="${photo.title}" class="lightbox" id="${photo.id}"
+				href="/view?id=${photo.id}"> <img title="${photo.title}"
+				src="<c:out value="http://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg" />" />
+			</a>
+		</c:forEach>
+	</div>
+	</section>
+
 </body>
 </html>

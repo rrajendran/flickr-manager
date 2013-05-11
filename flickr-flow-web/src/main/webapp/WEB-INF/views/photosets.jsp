@@ -13,14 +13,6 @@
 	<div id="wrapper">
 		<%@ include file="pagination.jsp"%>
 
-		<div style="float: right; width: 150px">
-			<div style="float: left;">
-				<img src="${person.buddyIcon}" />
-			</div>
-			<div style="float: right;">
-				<b>${title}</b> <i>${person.location._content}</i>
-			</div>
-		</div>
 		<div id="photosets" class="photosets">
 			<c:forEach items="${photosetsmodel.photosets.photoset }"
 				var="photoset" varStatus="status">

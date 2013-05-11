@@ -1,19 +1,202 @@
 body {
-	text-align: center;
-	font-family: Helvetica, Arial, Verdana, sans-serif !important;
+	font-family: Arial, Helvetica, Verdana, sans-serif !important;
 	font-size: 12px;
+	margin: 0;
 }
 
-.buddyicon{
+#content {
+	width: 1300px;
+	margin: 0 auto;
+	text-align:center;
+}
+
+.box span {
+	display: none;
+	font-size: 15px;
+	height: 110px;
+	width: 120px;
+	background-color: #ccc;
+	padding: 5px;
+	position: absolute;
+	right: 407px	;
+	border-right: 1px solid #fff;
+	cursor: auto;
+}
+
+.favourite {
+	background-image: url(images/heart.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
+
+.views {
+	background-image: url(images/views.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
+
+.download {
+	background-image: url(images/download.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
+
+.comments {
+	background-image: url(images/comments.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
+
+.exif {
+	background-image: url(images/exif.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
+
+.location {
+	background-image: url(images/location.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
+
+.profile {
+	background-image: url(images/profile.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
+
+.profile span {
+	display: none;
+	font-size: 15px;
+	height: 600px;
+	width: 600px;
+	background-color: #e1e6c8;
+	padding: 5px;
+	position: absolute;
+	left: 189px;
+	border-right: 1px solid #fff;
+	cursor: auto;
+}
+
+.navbox{
+	width: 50px;
+	height: 50px;
+}
+.next {
+	background-image: url(images/next.png);
+	background-repeat: no-repeat;
+	background-position: 20px 20px;
+	cursor: pointer;
+}
+
+.prev {
+	background-image: url(images/prev.png);
+	background-repeat: no-repeat;
+	background-position: 20px 20px;
+	cursor: pointer;
+}
+
+.location span img{
+	margin: 0;
+}
+.location span {
+	display: none;
+	font-size: 15px;
+	height: 600px;
+	width: 600px;
+	background-color: #d41243;
+	padding: 5px;
+	position: absolute;
+	left: 189px;
+	border-right: 1px solid #fff;
+	cursor: auto;
+}
+
+.tags{
+	background-image: url(images/tags.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
+
+.tags span{
+	display: none;
+	font-size: 15px;
+	height: 400px;
+	width: 400px;
+	background-color: #8ec127;
+	padding: 5px;
+	position: absolute;
+	left: 189px;
+	border-right: 1px solid #fff;
+	cursor: auto;
+}
+.box .exifclass {
+	text-align: left;
+	top: 55px;
+	font-family: sans-serif;
+	text-transform: none;
+	width: 300px;
+	height: 600px;
+	overflow: auto;
+	color: black;
+	background-color: #00aedb;
+}
+.box .exifclass table {
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+.box .exifclass table tr td{
+	border-bottom: 1px solid #000;
+	height: 30px;
+}
+
+.box {
+	width: 120px;
+	height: 120px;
+	font-family: 'Carrois Gothic SC', sans-serif;
+	text-transform: uppercase;
+}
+
+
+
+.box:hover span {
+	display: block;
+}
+
+.signinwith {
+	float: left;
+	clear: right;
+}
+
+#datepicker {
+	width: 126px;
+}
+
+.title {
+	font: normal "Dosis", sans-serif;
+	text-transform: uppercase;
+}
+
+.buddyicon {
 	height: 40px;
 	width: 40px;
 }
-.border-bottom{
+
+.border-bottom {
 	border-bottom: 1px dotted #000;
 	margin-bottom: 5px;
 	margin-top: 5px;
 }
-.count{
+
+.count {
 	background-color: #0063dc;
 	border: 1px solid #000;
 	-moz-border-radius: 4px;
@@ -21,27 +204,33 @@ body {
 	font-size: 45px;
 	font-weight: bold;
 }
-.pro{
+
+.pro {
 	color: #0063dc;
 }
-#addComment textarea{
-	width :100%
+
+#addComment textarea {
+	width: 100%
 }
-a{
+
+a {
 	text-decoration: none;
 	color: #0063dc
 }
-a:HOVER{
+
+a:HOVER {
 	color: #000;
 }
 
-#comments{
+#comments {
 	width: 300px;
 }
-.comment{
+
+.comment {
 	padding: 10px;
 	border-bottom: 1px solid #e0b60f;
 }
+
 #sidebar {
 	width: 200px;
 	border-right: 4px ridge #e0b60f;
@@ -66,10 +255,10 @@ a:HOVER{
 input[type=text] {
 	height: 26px;
 	font-size: 20px;
+	border: solid 1px #000;
 }
 
 #wrapper {
-	width: 1081px;
 	margin: 0 auto;
 	/* Replace the xxxx with the the width of your site (eg 800px)*/
 	text-align: left;
@@ -92,7 +281,6 @@ input[type=text] {
 }
 
 .photosets {
-	width: 100%;
 	clear: left;
 }
 
@@ -118,9 +306,15 @@ input[type=text] {
 }
 
 #flickrGallery {
-	clear: left;
 	float: left;
 	height: 100%;
+	margin: 0;
+	width: 1024px;
+}
+
+#flickrGallery img {
+	margin: 0;
+	float: left;
 }
 
 #exifInfo {
@@ -130,7 +324,6 @@ input[type=text] {
 	margin-bottom: 3px;
 }
 
-
 #exifInfo table {
 	width: 100%;
 	border-spacing: 0px;
@@ -139,8 +332,6 @@ input[type=text] {
 #exifInfo tr {
 	height: 30px;
 }
-
-
 
 .csstable {
 	margin-left: 0px;
@@ -245,51 +436,55 @@ input[type=text] {
 	border-width: 0px 0px 1px 1px;
 }
 
+.ui-tooltip,.arrow:after {
+	background: black;
+	border: 2px solid white;
+}
 
+.ui-tooltip {
+	padding: 10px 20px;
+	color: white;
+	border-radius: 20px;
+	font: bold 14px "Helvetica Neue", Sans-Serif;
+	text-transform: uppercase;
+	box-shadow: 0 0 7px black;
+}
 
-.ui-tooltip, .arrow:after {
-    background: black;
-    border: 2px solid white;
-  }
-  .ui-tooltip {
-    padding: 10px 20px;
-    color: white;
-    border-radius: 20px;
-    font: bold 14px "Helvetica Neue", Sans-Serif;
-    text-transform: uppercase;
-    box-shadow: 0 0 7px black;
-  }
-  .arrow {
-    width: 70px;
-    height: 16px;
-    overflow: hidden;
-    position: absolute;
-    left: 50%;
-    margin-left: -35px;
-    bottom: -16px;
-  }
-  .arrow.top {
-    top: -16px;
-    bottom: auto;
-  }
-  .arrow.left {
-    left: 20%;
-  }
-  .arrow:after {
-    content: "";
-    position: absolute;
-    left: 20px;
-    top: -20px;
-    width: 25px;
-    height: 25px;
-    box-shadow: 6px 5px 9px -9px black;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    tranform: rotate(45deg);
-  }
-  .arrow.top:after {
-    bottom: -20px;
-    top: auto;
-  }
+.arrow {
+	width: 70px;
+	height: 16px;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin-left: -35px;
+	bottom: -16px;
+}
+
+.arrow.top {
+	top: -16px;
+	bottom: auto;
+}
+
+.arrow.left {
+	left: 20%;
+}
+
+.arrow:after {
+	content: "";
+	position: absolute;
+	left: 20px;
+	top: -20px;
+	width: 25px;
+	height: 25px;
+	box-shadow: 6px 5px 9px -9px black;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	tranform: rotate(45deg);
+}
+
+.arrow.top:after {
+	bottom: -20px;
+	top: auto;
+}

@@ -28,7 +28,7 @@ public class InterestingnessController extends BaseFlickrController{
 	@Autowired
 	private InterestingnessOperations interestingnessOperations;
 	private static final String PAGE = "1";
-	private static final String PER_PAGE = "35";
+	private static final String PER_PAGE = "45";
 
 	@RequestMapping("/explore")
 	public String getList(@RequestParam(value="page",required=false)Integer page, 
@@ -48,7 +48,7 @@ public class InterestingnessController extends BaseFlickrController{
 			Principal principal) throws IOException{
 		ModelAndView modelAndView = new ModelAndView(INTERESTINGNESS_VIEW);
 		modelAndView.addObject("principal", SecurityContextHolder.getContext().getAuthentication());
-		modelAndView.addObject("title", "Interestingness on ");
+		modelAndView.addObject("title", "Explored");
 		modelAndView.addObject("formSearch", formSearch);
 		modelAndView.addObject("principal", principal);
 		int currentPage = Integer.parseInt(page);

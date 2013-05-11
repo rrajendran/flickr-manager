@@ -2,6 +2,7 @@ package org.springframework.social.flickr.api.impl;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import com.capella.flickr.api.model.PhotosModel;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:testApplicationContext.xml")
 @ActiveProfiles("localhost")
+@Ignore
 public class PeopleOperationsTest {
 	private static final String NSID = "48149369@N04";
 	

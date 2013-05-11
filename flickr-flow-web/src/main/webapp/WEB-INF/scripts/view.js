@@ -61,4 +61,34 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$(".favourite").click(function(){
+		var photoId = $(this).attr("name");
+		var id = $(this).attr("id");
+		console.log("id :" + id);
+		var favUrl = "/view/addToFavourite/" + photoId;
+		if(id == "removeFavourites")
+			favUrl = "/view/removeFromFavourite/" + photoId;
+		var backgroundColor = {"background-color": id=="addFavourites"? "red" : "gray"};
+		console.log(backgroundColor);
+		
+		console.log(favUrl);
+		$.ajax({
+			url: favUrl,
+			type: "GET",
+			dataType: "json",
+			success : function(msg){
+				console.log("response : " +  msg)
+				if(msg && id == "addFavourites"){
+					console.log("add to favourties")
+					$(".favourite, .favourite span").css(backgroundColor).attr("id","removeFavourites");
+					$(".favourite  span").text("Remove from favourites");
+				}else if(msg && id== "removeFavourites"){
+					console.log("removed from favourties");
+					$(".favourite, .favourite span").css(backgroundColor).attr("id","addFavourites");
+					$(".favourite  span").text("Add to favourites");
+				}
+			}
+		});
+	});
 });

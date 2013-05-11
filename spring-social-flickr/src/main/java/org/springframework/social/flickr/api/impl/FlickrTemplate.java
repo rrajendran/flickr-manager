@@ -2,9 +2,11 @@ package org.springframework.social.flickr.api.impl;
 
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.CommentsOperations;
+import org.springframework.social.flickr.api.FavoritesOperations;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.GalleriesOperations;
 import org.springframework.social.flickr.api.PeopleOperations;
+import org.springframework.social.flickr.api.PhotosOperations;
 import org.springframework.social.flickr.api.PhotosetsOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,9 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 	private GalleriesOperations galleriesOperations;
 	private PhotosetsOperations photosetsOperations;
 	private CommentsOperations commentsOperations;
-
+	private PhotosOperations photosOperations;
+	private FavoritesOperations favoritesOperations;
+	
 	public FlickrTemplate() {
 	}
 
@@ -38,6 +42,10 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 				true, consumerKey, accessToken);
 		this.commentsOperations = new CommentsTemplate(getRestTemplate(), true,
 				consumerKey, accessToken);
+		this.photosOperations = new PhotosTemplate(getRestTemplate(), true, 
+				consumerKey, accessToken);
+		this.favoritesOperations = new FavoritesTemplate(getRestTemplate(), true,
+				consumerKey, accessToken);
 	}
 
 	public PeopleOperations getPeopleOperations() {
@@ -55,4 +63,13 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 	public CommentsOperations getCommentsOperations() {
 		return this.commentsOperations;
 	}
+
+	public PhotosOperations getPhotosOperations() {
+		return this.photosOperations;
+	}
+
+	public FavoritesOperations getFavoritesOperations() {
+		return this.favoritesOperations;
+	}
+	
 }

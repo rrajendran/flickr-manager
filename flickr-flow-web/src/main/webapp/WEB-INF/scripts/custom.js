@@ -20,7 +20,8 @@ $(document).ready(function() {
 	$( "img[title]" ).tooltip();
 	
 	$("#flickrGallery").css({
-		height : $(window).height()
+		height : $(window).height(),
+		width: "100%"
 	});
 
 	$("#sidebar").css({

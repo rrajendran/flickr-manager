@@ -1,6 +1,8 @@
 package com.capella.flickr.api.entity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ExifInfo{
 	String id;
@@ -13,7 +15,7 @@ public class ExifInfo{
 	String safety_level;
 	String camera;
 	List<Exif> exif;
-	
+	Map<String,String> map;
 	public String getId() {
 		return id;
 	}
@@ -73,6 +75,17 @@ public class ExifInfo{
 	}
 	public void setExif(List<Exif> exif) {
 		this.exif = exif;
+		for (int i = 0; i < exif.size(); i++) {
+			if(map == null)
+				map = new HashMap<String, String>(exif.size());
+			map.put(exif.get(i).getLabel(), exif.get(i).getRaw().get_content());
+		}
 	}
 	
+	public Map<String, String> getMap() {
+		return map;
+	}
+	public void setMap(Map<String, String> map) {
+		this.map = map;
+	}
 }

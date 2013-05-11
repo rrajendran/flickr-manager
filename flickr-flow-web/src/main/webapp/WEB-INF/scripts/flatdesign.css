@@ -1,0 +1,185 @@
+body,div,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd,img,form,fieldset,input,textarea,blockquote
+	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+section {
+	float: left;
+	margin: 0;
+}
+
+#explore{
+	background-image: url(images/icons2.png);
+	background-repeat: no-repeat;
+	height: 120px;
+	width: 120px;
+}
+.menu {
+	float: left;
+	clear: right;
+}
+
+.menu ul {
+	list-style: none;
+	overflow: hidden;
+	position: relative;
+}
+
+.menu ul li {
+	margin: 0 0 0 0;
+	
+}
+
+.menu ul li:nth-child(1){
+}
+.menu ul li a {
+	display: block;
+	width: 120px;
+	height: 120px;
+	background-image: url(images/icons.png);
+	background-repeat: no-repeat;
+}
+
+.menu ul li:nth-child(1) a {
+	background-color: #58ebd3;
+	background-position: 28px -96px;
+}
+.menu ul li:nth-child(2) a {
+	background-color: #5bb2fc;
+	background-position: 28px 28px;
+}
+
+
+.menu ul li:nth-child(3) a {
+	background-color: #ffa659;
+	background-position: 28px -222px;
+}
+
+.menu ul li:nth-child(4) a {
+	background-color: #ff7a85;
+	background-position: 28px -342px;
+}
+
+.menu ul li:nth-child(5) a {
+	background-image: url(images/icons2.png);
+	background-color: yellow;
+	background-position: 28px 33px;
+}
+
+.menu ul li a span {
+	font: 50px "Dosis", sans-serif;
+	text-transform: uppercase;
+	position: absolute;
+	left: 700px;
+	top: 29px;
+	display: none;
+	
+}
+
+.menu ul li a:hover span {
+	display: block;
+}
+
+.menu ul li:nth-child(1) a span {
+	color: #58ebd3;
+}
+
+.menu ul li:nth-child(2) a span {
+	color: #5bb2fc;
+}
+
+.menu ul li:nth-child(3) a span {
+	color: #ffa659;
+}
+
+.menu ul li:nth-child(4) a span {
+	color: #ff7a85;
+}
+
+.menu ul li:nth-child(5) a span {
+	color: yellow;
+}
+
+.submenu ul {
+	list-style: none;
+	overflow: hidden;
+	position: relative;
+}
+
+.submenu ul li {
+	margin: 0 0 0 0;
+	float: left;
+}
+
+nav ul {
+	list-style: none;
+	overflow: hidden;
+	position: relative;
+}
+
+nav ul li {
+	margin: 0 0 0 0;
+}
+
+nav ul li a {
+	display: block;
+	width: 120px;
+	height: 120px;
+	background-image: url(images/icons.png);
+	background-repeat: no-repeat;
+}
+
+nav ul li:nth-child(1) a {
+	background-color: #5bb2fc;
+	background-position: 28px 28px;
+}
+
+nav ul li:nth-child(2) a {
+	background-color: #58ebd3;
+	background-position: 28px -96px;
+}
+
+nav ul li:nth-child(3) a {
+	background-color: #ffa659;
+	background-position: 28px -222px;
+}
+
+nav ul li:nth-child(4) a {
+	background-color: #ff7a85;
+	background-position: 28px -342px;
+}
+
+nav ul li a span {
+	font: 15px "Dosis", sans-serif;
+	text-transform: uppercase;
+	position: absolute;
+	left: 121px;
+	top: 0;
+	display: none;
+}
+
+nav ul li a span:nth-child(1){
+	background-color: #ff7a85;
+}
+
+nav ul li a:hover span {
+	display: block;
+}
+
+nav ul li:nth-child(1) a span {
+	color: #5bb2fc;
+}
+
+nav ul li:nth-child(2) a span {
+	color: #58ebd3;
+}
+
+nav ul li:nth-child(3) a span {
+	color: #ffa659;
+}
+
+nav ul li:nth-child(4) a span {
+	color: #ff7a85;
+}
