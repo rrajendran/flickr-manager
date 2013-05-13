@@ -10,41 +10,29 @@
 <script src="<c:url value="/static/scripts/view.js" />"></script>
 </head>
 <body>
-	<%@ include file="menu.jsp"%>
-	<div id="content">
+	<div id="container">
+		<%@ include file="menu.jsp"%>
 		<section style="float:left">
-		<div class="profile box" style="background-color: #6196da;">
-			<span> <%@ include file="profileInfo.jsp"%>
-			</span>
-		</div>
-		<c:if test="${info.photo.location.latitude != ''}">
-			<div class="location box" style="background-color: #d41243;">
-				<span> <%@ include file="location.jsp"%>
+			<div class="profile box" style="background-color: #6196da;">
+				<span> <%@ include file="profileInfo.jsp"%>
 				</span>
 			</div>
-		</c:if> <c:if test="${fn:length(info.photo.tags.tag) > 0}">
-			<div class="tags box" style="background-color: #8ec127;">
-				<span> <%@ include file="tags.jsp"%>
-				</span>
-			</div>
-		</c:if> </section>
-		<!-- <section style="float:left">
-		<div class="prev navbox" style="background-color: #8ec127;" />
-	</section> -->
-		<section style="float:left"> <img
-			src="<c:out value="http://farm${info.photo.farm}.staticflickr.com/${info.photo.server}/${info.photo.id}_${info.photo.secret}_b.jpg" />" />
-		<div>
-			<h2>${info.photo.title._content}</h2>
-		</div>
-		<div>${info.photo.description._content}</div>
-		</section>
-		<!-- <section style="float:left">
-		<div class="next navbox" style="background-color: #8ec127;" />
-	</section> -->
-		<section> <c:if
+			<c:if test="${info.photo.location != null}">
+				<div class="location box" style="background-color: #d41243;">
+					<span> <%@ include file="location.jsp"%>
+					</span>
+				</div>
+			</c:if> <c:if test="${fn:length(info.photo.tags.tag) > 0}">
+				<div class="tags box" style="background-color: #8ec127;">
+					<span> <%@ include file="tags.jsp"%>
+					</span>
+				</div>
+			</c:if> 
+			<c:if
 			test="${fn:length(exifWrapper.photo.exif) gt 0}">
 			<div class="exif box" style="background-color: #00aedb;">
-				<span class="exifclass"> <%@ include file="exif.jsp"%>
+				<span class="exifclass"> 
+				<%@ include file="exif.jsp"%>
 				</span>
 			</div>
 		</c:if>
@@ -55,8 +43,8 @@
 			</span>
 		</div>
 		<c:set var="favColor" value="gray" /> <c:set var="favText"
-			value="Add to favourites" /> <c:set var="favId" value="addFavourites" />
-		<c:if test="${info.photo.isfavorite}">
+			value="Add to favourites" /> <c:set var="favId"
+			value="addFavourites" /> <c:if test="${info.photo.isfavorite}">
 			<c:set var="favId" value="removeFavourites" />
 			<c:set var="favColor" value="red" />
 			<c:set var="favText" value="Remove from favourites" />
@@ -78,7 +66,24 @@
 				<span style="background-color: #f47835; color: white"> </span>
 			</div>
 
-		</c:if> </section>
+		</c:if>
+	</section>
+		<!-- <section style="float:left">
+		<div class="prev navbox" style="background-color: #8ec127;" />
+	</section> -->
+		<section style="float:left;text-align:center;width:1024px"> 
+			<a href="<c:url value="/explore/view/${date}/${nextPage}"/>">
+				<img src="<c:out value="http://farm${info.photo.farm}.staticflickr.com/${info.photo.server}/${info.photo.id}_${info.photo.secret}_b.jpg" />" />
+			</a>
+			
+		<div>
+			<h2>${info.photo.title._content}</h2>
+		</div>
+		<div>${info.photo.description._content}</div>
+		</section>
+		<!-- <section style="float:left">
+		<div class="next navbox" style="background-color: #8ec127;" />
+	</section> -->
 	</div>
 </body>
 </html>

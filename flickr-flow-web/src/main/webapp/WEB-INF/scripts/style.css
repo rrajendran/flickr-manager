@@ -1,13 +1,13 @@
 body {
 	font-family: Arial, Helvetica, Verdana, sans-serif !important;
 	font-size: 12px;
-	margin: 0;
+	width: 100%;
+	height: 100%;
 }
 
-#content {
-	width: 1300px;
+#container {
+	width: 1265px;
 	margin: 0 auto;
-	text-align:center;
 }
 
 .box span {
@@ -18,7 +18,7 @@ body {
 	background-color: #ccc;
 	padding: 5px;
 	position: absolute;
-	right: 407px	;
+	left: 201px;
 	border-right: 1px solid #fff;
 	cursor: auto;
 }
@@ -79,16 +79,16 @@ body {
 	width: 600px;
 	background-color: #e1e6c8;
 	padding: 5px;
-	position: absolute;
-	left: 189px;
+	left: 201px;
 	border-right: 1px solid #fff;
 	cursor: auto;
 }
 
-.navbox{
+.navbox {
 	width: 50px;
 	height: 50px;
 }
+
 .next {
 	background-image: url(images/next.png);
 	background-repeat: no-repeat;
@@ -103,9 +103,10 @@ body {
 	cursor: pointer;
 }
 
-.location span img{
+.location span img {
 	margin: 0;
 }
+
 .location span {
 	display: none;
 	font-size: 15px;
@@ -114,19 +115,19 @@ body {
 	background-color: #d41243;
 	padding: 5px;
 	position: absolute;
-	left: 189px;
+	left: 201px;
 	border-right: 1px solid #fff;
 	cursor: auto;
 }
 
-.tags{
+.tags {
 	background-image: url(images/tags.png);
 	background-repeat: no-repeat;
 	background-position: 30px 25px;
 	cursor: pointer;
 }
 
-.tags span{
+.tags span {
 	display: none;
 	font-size: 15px;
 	height: 400px;
@@ -138,6 +139,7 @@ body {
 	border-right: 1px solid #fff;
 	cursor: auto;
 }
+
 .box .exifclass {
 	text-align: left;
 	top: 55px;
@@ -149,11 +151,13 @@ body {
 	color: black;
 	background-color: #00aedb;
 }
+
 .box .exifclass table {
 	table-layout: fixed;
 	border-collapse: collapse;
 }
-.box .exifclass table tr td{
+
+.box .exifclass table tr td {
 	border-bottom: 1px solid #000;
 	height: 30px;
 }
@@ -164,8 +168,6 @@ body {
 	font-family: 'Carrois Gothic SC', sans-serif;
 	text-transform: uppercase;
 }
-
-
 
 .box:hover span {
 	display: block;

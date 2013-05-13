@@ -159,26 +159,30 @@ public class PhotosController extends BaseFlickrController {
 			HttpServletRequest request, HttpServletResponse response,
 			Principal principal) throws IOException {
 		ModelAndView model = new ModelAndView("view");
-		;
 		model.addObject("formSearch", formSearch);
 		model.addObject("principal", principal);
 		try {
-			ExifModel photo = flickr.getPhotosOperations().getExif(id);
-			model.addObject("exifWrapper", photo);
-
-			PhotoInfoModel info = flickr.getPhotosOperations().getInfo(id);
-			model.addObject("info", info);
-			
-			PhotoCommentsModel comments = flickr.getCommentsOperations().getList(id);
-			model.addObject("comments", comments);
-			
-			String ownerId = info.getPhoto().getOwner().getNsid();
-			PersonModel person = flickr.getPeopleOperations().getPersonProfile(ownerId);
-			model.addObject("person", person);
+			buildViewPage(id, model);
 			
 		} catch (FlickrException e) {
 			e.printStackTrace();
 		}
 		return model;
+	}
+
+	private void buildViewPage(String id, ModelAndView model)
+			throws FlickrException {
+		ExifModel photo = flickr.getPhotosOperations().getExif(id);
+		model.addObject("exifWrapper", photo);
+
+		PhotoInfoModel info = flickr.getPhotosOperations().getInfo(id);
+		model.addObject("info", info);
+		
+		PhotoCommentsModel comments = flickr.getCommentsOperations().getList(id);
+		model.addObject("comments", comments);
+		
+		String ownerId = info.getPhoto().getOwner().getNsid();
+		PersonModel person = flickr.getPeopleOperations().getPersonProfile(ownerId);
+		model.addObject("person", person);
 	}
 }
