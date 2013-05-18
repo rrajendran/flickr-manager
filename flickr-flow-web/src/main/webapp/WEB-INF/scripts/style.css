@@ -6,7 +6,7 @@ body {
 }
 
 #container {
-	width: 1265px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -18,7 +18,7 @@ body {
 	background-color: #ccc;
 	padding: 5px;
 	position: absolute;
-	left: 201px;
+	left: 120px;
 	border-right: 1px solid #fff;
 	cursor: auto;
 }
@@ -77,9 +77,9 @@ body {
 	font-size: 15px;
 	height: 600px;
 	width: 600px;
-	background-color: #e1e6c8;
+	background-color: #6196da;
 	padding: 5px;
-	left: 201px;
+	left: 120px;
 	border-right: 1px solid #fff;
 	cursor: auto;
 }
@@ -92,21 +92,38 @@ body {
 .next {
 	background-image: url(images/next.png);
 	background-repeat: no-repeat;
-	background-position: 20px 20px;
+	background-position: 10px 10px;
 	cursor: pointer;
+	background-color: #10A86E;
+	clear: right;
+	width: 50px;
+	height: 50px;
 }
 
+#navBar{
+	display: none;
+	top: 0;
+}
 .prev {
 	background-image: url(images/prev.png);
 	background-repeat: no-repeat;
-	background-position: 20px 20px;
+	background-position: 10px 10px;
 	cursor: pointer;
+	background-color: #10A86E;
+	width: 50px;
+	height: 50px;
+	border-right: 1px solid #CCC;
 }
 
 .location span img {
 	margin: 0;
 }
-
+.home{
+	background-image: url(images/home.png);
+	background-repeat: no-repeat;
+	background-position: 30px 25px;
+	cursor: pointer;
+}
 .location span {
 	display: none;
 	font-size: 15px;
@@ -115,7 +132,7 @@ body {
 	background-color: #d41243;
 	padding: 5px;
 	position: absolute;
-	left: 201px;
+	left: 120px;
 	border-right: 1px solid #fff;
 	cursor: auto;
 }
@@ -135,7 +152,7 @@ body {
 	background-color: #8ec127;
 	padding: 5px;
 	position: absolute;
-	left: 189px;
+	left: 120px;
 	border-right: 1px solid #fff;
 	cursor: auto;
 }
@@ -243,21 +260,17 @@ a:HOVER {
 	font-size: 20px;
 }
 
-#formSettings input {
-	height: 30px;
-	width: 300px;
-}
-
 #search {
 	float: right !important;
 	margin-top: 8px;
 	right: 3px;
 }
 
-input[type=text] {
+input[type=button] {
 	height: 26px;
-	font-size: 20px;
-	border: solid 1px #000;
+	font-size: 12px;
+	padding: 5px;
+	cursor: pointer;	
 }
 
 #wrapper {

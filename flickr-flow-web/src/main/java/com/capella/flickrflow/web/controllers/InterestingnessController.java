@@ -25,7 +25,7 @@ import com.capella.flickr.api.model.PhotosModel;
 import com.capella.flickr.api.operations.interestingness.InterestingnessOperations;
 import com.capella.flickr.api.utils.DateUtils;
 
-@Controller("/explore")
+@Controller
 public class InterestingnessController extends BaseFlickrController{
 
 	private static final String INTERESTINGNESS_VIEW = "interestingness";
@@ -34,7 +34,7 @@ public class InterestingnessController extends BaseFlickrController{
 	private static final String PAGE = "1";
 	private static final String PER_PAGE = "45";
 
-	@RequestMapping("/")
+	@RequestMapping("/explore")
 	public String getList(@RequestParam(value="page",required=false)Integer page, 
 			@RequestParam(value="date",required=false)String date, 
 			HttpServletRequest request,

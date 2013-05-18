@@ -35,6 +35,8 @@
 	</section>
 	<section>
 	<div id="flickrGallery">
+		<c:set var="counter" value="${(photos.photos.page * photos.photos.perpage) - 44 }"/>
+		
 		<c:forEach items="${photos.photos.photo}" var="photo"
 			varStatus="status">
 			<input type="hidden" id="lightboxUrl-${photo.id}"
@@ -42,9 +44,10 @@
 			<input type="hidden" id="viewUrl-${photo.id}"
 				value="<c:url value="/view?id=${photo.id}" />" />
 			<a title="${photo.title}" class="lightbox" id="${photo.id}"
-				href="/explore/view/${date}/${(status.index + 1)}"> <img title="${photo.title}"
+				href="/explore/view/${date}/${counter}"> <img title="${photo.title}"
 				src="<c:out value="http://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg" />" />
 			</a>
+			<c:set var="counter" value="${counter + 1}"/>
 		</c:forEach>
 	</div>
 	</section>

@@ -1,3 +1,8 @@
+<div id="addCommentContainer">
+	<input type="hidden" id="photoId" name="photoId" value="${info.photo.id}" />
+	<textarea rows="10" style="width:100%" id="userComment" name="userComment"></textarea>
+	<input id="addComment" name="addComment" type="button" value="Submit"/>
+</div>
 <c:forEach items="${comments.comments.comment}" var="comment"
 	varStatus="status">
 	<div class="comment" id="comment_${comment.id}">

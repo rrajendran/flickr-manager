@@ -11,8 +11,10 @@
 </head>
 <body>
 	<div id="container">
-		<%@ include file="menu.jsp"%>
 		<section style="float:left">
+			<div class="home box" style="background-color: yellow;">
+				
+			</div>
 			<div class="profile box" style="background-color: #6196da;">
 				<span> <%@ include file="profileInfo.jsp"%>
 				</span>
@@ -71,15 +73,19 @@
 		<!-- <section style="float:left">
 		<div class="prev navbox" style="background-color: #8ec127;" />
 	</section> -->
-		<section style="float:left;text-align:center;width:1024px"> 
+		<section style="float:left;width:1024px"> 
 			<a href="<c:url value="/explore/view/${date}/${nextPage}"/>">
-				<img src="<c:out value="http://farm${info.photo.farm}.staticflickr.com/${info.photo.server}/${info.photo.id}_${info.photo.secret}_b.jpg" />" />
+				<img id="flickrImage" src="<c:out value="http://farm${info.photo.farm}.staticflickr.com/${info.photo.server}/${info.photo.id}_${info.photo.secret}_b.jpg" />" />
 			</a>
 			
 		<div>
 			<h2>${info.photo.title._content}</h2>
 		</div>
 		<div>${info.photo.description._content}</div>
+		</section>
+		<section style="float:right" id="navBar">
+			<div class="prev" ></div>
+			<div class="next"></div>
 		</section>
 		<!-- <section style="float:left">
 		<div class="next navbox" style="background-color: #8ec127;" />

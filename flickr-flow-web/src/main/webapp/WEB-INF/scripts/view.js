@@ -1,40 +1,32 @@
 $(document).ready(
 		function() {
 			var pageNumber = 1;
-			$("#dialog-form").dialog(
-					{
-						resizable : false,
-						autoOpen : false,
-						height : 300,
-						width : 350,
-						modal : true,
-						buttons : {
-							"Comment" : function(form) {
-								var comment = $("#userComment").val();
-								var photoId = $("#photoId").val();
-								var commentUrl = "/addComments/" + photoId
-										+ "/" + comment;
-								alert(commentUrl);
-								if (comment != "") {
-									$.ajax({
-										url : commentUrl,
-										type : "GET",
-										dataType : "json",
-										success : function(msg) {
-											alert(msg.comment.id);
-										}
-									});
-								}
-								$(this).dialog("close");
-							},
-							Cancel : function() {
-								$(this).dialog("close");
-							}
+			$(".home").bind("click",function(){
+				window.location = "/explore" ;
+			});
+			console.log(($("#flickrImage")));
+			$("#navBar").css({
+				"left": $("img").width()
+			}).show();
+			$("#addComment").click(function() {
+
+				var comment = $("#userComment").val();
+				var photoId = $("#photoId").val();
+				var commentUrl = "/addComments/" + photoId
+						+ "/" + encodeURIComponent(comment);
+				alert(commentUrl);
+				if (comment != "") {
+					$.ajax({
+						url : commentUrl,
+						type : "GET",
+						dataType : "json",
+						success : function(msg) {
+							alert(msg.comment.id);
 						}
 					});
-
-			$("#addComment").click(function() {
-				$("#dialog-form").dialog("open");
+				}
+				$(this).dialog("close");
+			
 			});
 
 			$(".editComment").click(function() {
